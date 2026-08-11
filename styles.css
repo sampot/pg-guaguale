@@ -1,0 +1,216 @@
+/* 刮刮樂 — mobile-first：預設窄螢幕，寬螢幕再加寬。 */
+:root {
+  --bg: #3d1530;
+  --panel: #5a1f44;
+  --panel-line: #7a2f5c;
+  --gold: #f7b731;
+  --fg: #fdf0f7;
+  --muted: #d9a8c4;
+  --win: #2ecc71;
+  --lose: #e74c3c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+/* ---------- 頂欄 ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(61, 21, 48, 0.92);
+  backdrop-filter: blur(4px);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-right: auto;
+}
+
+.ghost,
+.primary,
+.ctrl {
+  font-size: 1rem;
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--panel-line);
+  background: var(--panel);
+  color: var(--fg);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.ghost:hover {
+  border-color: var(--gold);
+}
+
+.primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #3d1530;
+  font-weight: 700;
+}
+
+/* ---------- 主區 ---------- */
+.game {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0.9rem 0.9rem 2rem;
+}
+
+.notice {
+  margin: 0 0 0.8rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.stat b {
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 刮卡 ---------- */
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
+  gap: clamp(6px, 2vw, 12px);
+  margin-bottom: 1rem;
+}
+
+.cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  border: 2px solid var(--panel-line);
+  background: var(--panel);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell.open {
+  border-color: var(--gold);
+}
+
+.inner {
+  font-size: clamp(1.6rem, 8vw, 2.6rem);
+  color: var(--muted);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.inner.won {
+  color: var(--win);
+}
+
+/* 刮層：銀色，用 radial-gradient mask 刮除（點擊處變透明）。 */
+.cover {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, #cfd3d8, #aeb2b9 45%, #e6eaef 55%, #b9bdc4);
+  cursor: pointer;
+  touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b6f76;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  -webkit-mask-image: radial-gradient(circle 0.5em at var(--mx, 50%) var(--my, 50%), transparent 0, black 100%);
+  mask-image: radial-gradient(circle 0.5em at var(--mx, 50%) var(--my, 50%), transparent 0, black 100%);
+}
+
+.cover::after {
+  content: "刮";
+}
+
+/* ---------- 狀態與控制 ---------- */
+.status {
+  min-height: 1.5em;
+  margin: 0 0 0.9rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.status[data-tone="win"] {
+  color: var(--win);
+  font-weight: 600;
+}
+
+.status[data-tone="lose"] {
+  color: var(--lose);
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.controls button {
+  flex: 1;
+  max-width: 200px;
+}
+
+.meta {
+  margin-top: 1.4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- 寬螢幕 ---------- */
+@media (min-width: 560px) {
+  .game {
+    padding-top: 1.5rem;
+  }
+
+  .board {
+    gap: 14px;
+  }
+
+  .stats {
+    gap: 0.4rem 1.6rem;
+    font-size: 1rem;
+  }
+}

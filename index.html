@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3d1530" />
+    <title>刮刮樂</title>
+    <meta
+      name="description"
+      content="刮刮樂——夜市機台風格的數位刮刮卡。刮開格子找 3 個相同符號連在一起。純娛樂、非真實博弈。"
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎰</text></svg>" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>刮刮樂</h1>
+      <span class="subtitle">夜市機台</span>
+      <button id="btn-music" type="button" class="ghost" aria-label="切換聲音">聲音開</button>
+    </header>
+
+    <main class="game">
+      <p class="notice">純娛樂遊戲，不是真實賭博。獎項為虛擬，無任何現金價值。</p>
+
+      <div class="stats">
+        <span class="stat">已刮 <b id="stat-scratched">0/–</b></span>
+        <span class="stat">中獎格 <b id="stat-won">0 個</b></span>
+      </div>
+
+      <div id="board" class="board" role="group" aria-label="刮卡板"></div>
+
+      <p id="status" class="status">用手指刮開格子，找 3 個相同符號連在一起。</p>
+
+      <div class="controls">
+        <button id="btn-new" type="button" class="primary">換一張</button>
+      </div>
+
+      <footer class="meta">
+        <span>最佳中獎格數：<b id="best-label">—</b></span>
+      </footer>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
