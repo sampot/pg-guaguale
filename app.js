@@ -39,9 +39,9 @@ function setStatus(msg, tone = "") {
 
 function handleScratch(i) {
   if (settled) return;
-  const { state, event } = scratch(card, i);
+  const { card: next, event } = scratch(card, i);
   if (event.kind === "invalid") return;
-  card = state;
+  card = next;
   audio.scratchOnce();
   if (event.won) audio.hit();
   else audio.miss();
