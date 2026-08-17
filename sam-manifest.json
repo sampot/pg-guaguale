@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "rev": "590058d",
+  "files": [
+    "app.js",
+    "assets/sfx/chip-lay-1.ogg",
+    "assets/sfx/chips-stack-1.ogg",
+    "assets/sfx/chips-stack-2.ogg",
+    "assets/sfx/dice-throw-1.ogg",
+    "assets/sfx/dice-throw-2.ogg",
+    "assets/ui/button_round_gloss.png",
+    "assets/ui/button_square_gradient.png",
+    "audio.js",
+    "functions.js",
+    "game.js",
+    "index.html",
+    "styles.css"
+  ]
+}
